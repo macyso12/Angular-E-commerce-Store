@@ -1,0 +1,27 @@
+<h2>Products</h2>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
+
+<!--renders a template for each item in a collection-->
+<div *ngFor="let product of products">
+  <h3>
+    <!--each product name a link to product details-->
+    <a
+      [title]="product.name + ' details'"
+      [routerLink]="['/products', product.id]"
+    >
+      {{ product.name }}
+    </a>
+  </h3>
+  <!--conditionally includes a template based on the value of an expression coerced to Boolean-->
+  <p *ngIf="product.description">Description: {{ product.description }}</p>
+  <!--onClick function - (click) pass in function-->
+  <button type="button" (click)="share()">Share</button>
+  <!--as a child of ProductListComponent-->
+  <app-product-alerts [product]="product" (notify)="onNotify()">
+  </app-product-alerts>
+</div>
